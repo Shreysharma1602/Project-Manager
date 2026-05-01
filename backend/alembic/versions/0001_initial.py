@@ -15,10 +15,12 @@ depends_on = None
 
 
 def upgrade() -> None:
+    # Create enum types using raw SQL to handle existing types
+    op.execute("DO $$ BEGIN CREATE TYPE userrole AS ENUM ('ADMIN', 'MEMBER'); EXCEPTION WHEN duplicate_object THEN NULL; END $$")
+    op.execute("DO $$ BEGIN CREATE TYPE taskstatus AS ENUM ('TODO', 'IN_PROGRESS', 'DONE'); EXCEPTION WHEN duplicate_object THEN NULL; END $$")
+    
     user_role = sa.Enum("ADMIN", "MEMBER", name="userrole")
     task_status = sa.Enum("TODO", "IN_PROGRESS", "DONE", name="taskstatus")
-    user_role.create(op.get_bind(), checkfirst=True)
-    task_status.create(op.get_bind(), checkfirst=True)
 
     op.create_table(
         "users",
