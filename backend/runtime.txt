@@ -1,2 +1,2 @@
 python-3.11.9
-git add backend/app/config.py backend/runtime.txt backend/.env.production
+git commit -m "🔧 Configure production database and Python version"
