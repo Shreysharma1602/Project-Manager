@@ -17,11 +17,11 @@
     }
   ],
   "env": {
-    "VITE_API_URL": "@backend-url"
+    "VITE_API_URL": "https://your-backend-domain.onrender.com/api"
   },
   "build": {
     "env": {
-      "VITE_API_URL": "@backend-url"
+      "VITE_API_URL": "https://your-backend-domain.onrender.com/api"
     }
   }
 }
